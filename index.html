@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our first valentine</title>
+
+<style>
+body{
+margin:0;
+font-family:system-ui;
+background:linear-gradient(160deg,#ff758c,#ff7eb3);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+.container{
+padding:20px;
+max-width:520px;
+margin:auto;
+}
+
+button{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+margin:6px;
+font-weight:bold;
+background:white;
+color:#ff4d6d;
+}
+
+.intro{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.popup,.secret{
+display:none;
+position:fixed;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#ff4d6d;
+padding:20px;
+border-radius:16px;
+width:80%;
+max-width:350px;
+z-index:10;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+
+.confetti{
+position:fixed;
+top:-10px;
+width:8px;
+height:14px;
+opacity:0.9;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(720deg);
+opacity:1;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="intro">
+<button onclick="startSite()">Press Me :) </button>
+</div>
+
+<!-- 🎵 Replace VIDEO_ID with Candyrella YouTube ID -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&loop=1&playlist=VIDEO_ID"
+allow="autoplay"></iframe>
+
+<div class="container">
+
+<h1>Jiakhh Valentine pertama ni yee 👀</h1>
+
+<button onclick="openLetter()">💌 Love Letter</button>
+
+<h2>💘 Will You Be My Valentine?</h2>
+<button onclick="yes()">YESS</button>
+<button id="noBtn" onmouseover="runAway()"> No :( </button>
+<p id="result"></p>
+
+
+<h2> Hayoo inget ndaa? 🌝🌝</h2>
+<p>When did we meet? (nyontek dosa) </p>
+<button onclick="quiz(true)">12 Sept</button>
+<button onclick="quiz(false)">12 Oct</button>
+<p id="quizResult"></p>
+
+</div>
+
+<div class="popup" id="letter">
+<h3>Love Letter </h3>
+<p>
+Hii darling, i just wanna say thank you.
+I finally figured that loving women is not 
+hard like most people said. Honestly, am not
+romantic enough but i hope u like this. I love u :>
+</p>
+<button onclick="closeLetter()">Close</button>
+</div>
+
+<script>
+function startSite(){
+document.getElementById("intro").style.display="none";
+}
+
+function openLetter(){
+document.getElementById("letter").style.display="block";
+}
+function closeLetter(){
+document.getElementById("letter").style.display="none";
+}
+
+function openSecret(){
+document.getElementById("secret").style.display="block";
+}
+function closeSecret(){
+document.getElementById("secret").style.display="none";
+}
+
+function yes(){
+document.getElementById("result").innerHTML="SHE SAID YES!! 🎉❤️";
+naturalConfetti();
+}
+
+function runAway(){
+let btn=document.getElementById("noBtn");
+btn.style.position="absolute";
+btn.style.top=Math.random()*80+"vh";
+btn.style.left=Math.random()*80+"vw";
+}
+
+function quiz(correct){
+document.getElementById("quizResult").innerHTML=
+correct?"Correct ❤️":"Nice try 😜";
+}
+
+function createHeart(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,500);
+
+function naturalConfetti(){
+for(let i=0;i<80;i++){
+let conf=document.createElement("div");
+conf.className="confetti";
+conf.style.left=Math.random()*100+"vw";
+conf.style.background=["#fff","#ffe066","#ff6b6b","#ffd1dc"][Math.floor(Math.random()*4)];
+conf.style.animationDuration=(Math.random()*2+3)+"s";
+document.body.appendChild(conf);
+setTimeout(()=>conf.remove(),5000);
+}
+}
+</script>
+
+</body>
+</html>
